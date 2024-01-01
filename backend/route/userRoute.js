@@ -1,9 +1,10 @@
+const User = require("../model/UserModel.js");
+const expressAsycHandler = require("express-async-handler");
+const bcrypt = require("bcrypt");
+const { generateToken, isAuth } = require("../util.js");
 const express = require("express");
-import User from "../model/UserModel.js";
-import expressAsycHandler from "express-async-handler";
-import bcrypt from "bcrypt";
-import { generateToken, isAuth } from "../util.mjs";
 const userRouter = express.Router();
+
 userRouter.put(
   "/sign-up",
   expressAsycHandler(async (req, res) => {
@@ -52,4 +53,5 @@ userRouter.post(
     }
   })
 );
-export default userRouter;
+
+module.exports = userRouter;
