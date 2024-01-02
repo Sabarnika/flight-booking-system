@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
-const airportSchema = new mongoose.model({
-  code: {
+const flightSchema = new mongoose.Schema({
+  airLineId: {
+    type: String,
+    require: true,
+  },
+  number: {
     type: String,
     unique: true,
     require: true,
@@ -9,11 +13,7 @@ const airportSchema = new mongoose.model({
     type: String,
     require: true,
   },
-  location: {
-    type: String,
-    require: true,
-  },
-  locationCode: {
+  category: {
     type: String,
     require: true,
   },
@@ -21,5 +21,5 @@ const airportSchema = new mongoose.model({
     type: String,
   },
 });
-const Airport = mongoose.model("Airport", airportSchema);
-module.exports = Airport;
+const Flight = mongoose.model("Flight", flightSchema);
+module.exports = Flight;

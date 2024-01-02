@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const flightRouter = require("./route/flightRoute");
 const userRouter = require("./route/userRoute");
 const app = express();
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/user", userRouter);
+app.use("/api/flights", flightRouter);
 const PORT = process.env.PORT || 3500;
 app.listen(PORT, () => {
   console.log(`Server listening at Post ${PORT}`);

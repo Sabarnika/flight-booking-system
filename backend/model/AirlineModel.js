@@ -12,4 +12,4 @@ const airLineSchema = new mongoose.Schema({
   },
 });
 const Airlines = mongoose.model("Airline", airLineSchema);
-export default Airlines;
+module.exports = Airlines;
