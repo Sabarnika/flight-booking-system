@@ -13,12 +13,21 @@ userRouter.put(
       res.status(400).send({ message: "Email already exists" });
       return;
     }
-    const nameArray = req.body.email.split("@");
-    const firstname = nameArray[0];
+    // const nameArray = req.body.email.split("@");
+    // const firstname = nameArray[0];
     const userSignup = new User({
-      firstname: firstname,
+      firstname: req.body.firstname,
       email: req.body.email,
-      password: bcrypt.hashSync(req.body.password),
+      password: bcrypt.hashSync(req.body.password, 10),
+      lastname: req.body.lastname,
+      city: req.body.city,
+      phone: req.body.city,
+      gender: req.body.gender,
+      address: req.body.address,
+      postal: req.body.postal,
+      organization: req.body.organization,
+      country: req.body.country,
+      dob: req.body.dob,
     });
     await userSignup.save();
     res.send({
@@ -39,7 +48,7 @@ userRouter.post(
         message: "Account not found!",
       });
     }
-    if (bcrypt.compareSync(user.password, req.body.password)) {
+    if (bcrypt.compareSync(req.body.password, user.password)) {
       const users = await User.findOne({
         email: req.body.email,
       });
