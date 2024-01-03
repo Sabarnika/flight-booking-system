@@ -5,11 +5,13 @@ import { toast } from "react-toastify";
 import { getError } from "../util";
 import Loading from "../components/Loading";
 import Axios from "axios";
+
 const ACTIONS = {
   FETCH_FAILED: "FETCH_FAILED",
   FETCH_REQUEST: "FETCH_REQUEST",
   FETCH_SUCCESS: "FETCH_SUCCESS",
 };
+
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.FETCH_FAILED:
@@ -22,19 +24,33 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
 export default function SignupScreen() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const [{ loading }, dispatch] = useReducer(reducer, { loading: false });
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPass] = useState("");
   const [passShow, setPassShow] = useState(false);
   const [cpass, setCpass] = useState("");
   const [email, setEmail] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [dob, setDob] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [postal, setPostal] = useState("");
+  const [organization, setOrganization] = useState("");
+
   const validatePassword = (text) => {
     return text.match(
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/
     );
   };
+
   const handleSignup = async (e) => {
     e.preventDefault();
     if (password === cpass) {
@@ -44,8 +60,19 @@ export default function SignupScreen() {
           const { data } = await Axios.put(
             "http://localhost:3500/api/user/sign-up",
             {
+              name,
+              gender,
+              phone,
               email,
               password,
+              firstname,
+              lastname,
+              dob,
+              address,
+              city,
+              country,
+              postal,
+              organization,
             }
           );
 
@@ -60,7 +87,7 @@ export default function SignupScreen() {
         }
       } else {
         toast.error(
-          "Password should contain atleast 8-15 characters , 1 special character , 1 digit and 1 uppercase"
+          "Password should contain at least 8-15 characters, 1 special character, 1 digit, and 1 uppercase"
         );
       }
     } else {
@@ -74,6 +101,54 @@ export default function SignupScreen() {
       <div>
         <div>Sign Up</div>
         <form onSubmit={handleSignup}>
+          <div className="input-fields">
+            <label htmlFor="firstname">
+              First Name<span>*</span>
+            </label>
+            <input
+              type="text"
+              id="firstname"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-fields">
+            <label htmlFor="lastname">
+              Last Name<span>*</span>
+            </label>
+            <input
+              type="text"
+              id="lastname"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-fields">
+            <label htmlFor="gender">
+              Gender<span>*</span>
+            </label>
+            <input
+              type="text"
+              id="gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-fields">
+            <label htmlFor="phone">
+              Phone<span>*</span>
+            </label>
+            <input
+              type="text"
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
           <div className="input-fields">
             <label htmlFor="email">
               Email<span>*</span>
@@ -95,7 +170,7 @@ export default function SignupScreen() {
               id="pass"
               value={password}
               onChange={(e) => setPass(e.target.value)}
-              placeholder="Altleast 8 characters including 1 digit,1 sepcial,1 uppercase"
+              placeholder="At least 8 characters including 1 digit, 1 special, 1 uppercase"
               required
             />
           </div>
@@ -111,6 +186,7 @@ export default function SignupScreen() {
               required
             />
           </div>
+
           <div className="input-fields">
             <input
               type="checkbox"

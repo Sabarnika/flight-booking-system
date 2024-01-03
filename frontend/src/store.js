@@ -4,6 +4,7 @@ export const Store = createContext();
 const ACTIONS = {
   SIGN_UP: "sign_up",
   SIGN_IN: "sign_in",
+  SIGN_OUT: "sign_out",
 };
 const initialState = {
   userDetails: localStorage.getItem("userDetails")
@@ -16,6 +17,12 @@ const reducer = (state, action) => {
       return { ...state, userDetails: action.payload };
     case ACTIONS.SIGN_UP:
       return { ...state, userDetails: action.payload };
+    case ACTIONS.SIGN_OUT:
+    default:
+      return {
+        ...state,
+        userDetails: null,
+      };
   }
 };
 export function StoreProvider(props) {
