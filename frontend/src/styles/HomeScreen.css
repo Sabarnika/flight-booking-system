@@ -1,0 +1,114 @@
+.best-flight-offer-container {
+  margin-right: 10%;
+  height: 80%;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  margin-top: 2%;
+  border: 1px solid #a4a1a1;
+  margin-left: 50px;
+}
+.best-flight-offer-container img {
+  height: 80%;
+  width: 80%;
+  border-radius: 20px;
+  padding: 13px;
+  margin-left: 35px;
+}
+.best-flight-offer-container h2 {
+  font-size: 23px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: rgb(182, 91, 84);
+}
+.best {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  color: rgb(110, 217, 234);
+}
+.best-flight-offer-container h5 {
+  text-align: center;
+}
+.info {
+  text-align: center;
+}
+.info h5,
+s {
+  color: cadetblue;
+}
+.popular-flight-routes-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.popular-flight-routes {
+  margin: 40px;
+  margin-left: 120px;
+  text-align: center;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  margin-top: 2%;
+  border: 1px solid #a4a1a1;
+}
+.popular-flight-route-image {
+  border-radius: 40px;
+}
+.popular-flight-route-detail h3 {
+  color: rgba(185, 93, 77, 0.994);
+  font-size: 23px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.popular-flight-route-detail h4 {
+  color: rgba(17, 3, 65, 0.994);
+  font-size: 20px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.popular-flight-route-detail span {
+  color: cadetblue;
+}
+.best-route-container h2 {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(110, 217, 234);
+  margin-top: 3%;
+}
+.container {
+  margin-bottom: 60px;
+}
+hr {
+  height: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.travel-route {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 25%;
+}
+.best-route {
+  padding: 10px;
+  border: 1px solid #a4a1a1;
+  border-radius: 10px;
+  margin: 17px;
+  margin-left: 20px;
+}
+.travel-best-route h2 {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(110, 217, 234);
+  margin-top: 3%;
+}
+.travel-best-route h3 {
+  margin-left: 5%;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: rgba(185, 93, 77, 0.994);
+  margin-top: 15px;
+}
+.travel-best-route span {
+  font-size: 20px;
+  margin-left: 2%;
+}
+.travel-route h5 {
+  font-size: 17px;
+  cursor: pointer;
+}
+.travel-route h5:hover {
+  background: rgb(241, 217, 184);
+}
