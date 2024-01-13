@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Axios from "axios";
 import Loading from "./Loading";
 import { Store } from "../store";
+import '../styles/Flights.css'
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -21,6 +22,8 @@ function Flight() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userDetails, airports } = state;
+  const [source,setSource]=useState('')
+  const [dest,setDes]=useState('')
   const [{ loading }, dispatch] = useReducer(reducer, { loading: false });
   const fetchAirports = async () => {
     try {
@@ -42,27 +45,32 @@ function Flight() {
   };
   return (
     <div>
-      <h2 className="best">Best Offers Available upto 60%</h2>
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-4 best-flight-offer-container">
-            <img
-              src="https://media.istockphoto.com/id/155439315/photo/passenger-airplane-flying-above-clouds-during-sunset.jpg?s=612x612&w=0&k=20&c=LJWadbs3B-jSGJBVy9s0f8gZMHi2NvWFXa3VJ2lFcL0="
-              className="gal-img bst"
-            />
+      <h2 className="heading">Best Offers Available upto 60%</h2>
+      <div>
+        <div>
+          <div>
             <hr />
-            <div className="info">
-              {airports &&
-                airports.map((airport) => (
-                  <h2 key={airport.id} value={airport.code}>
-                    {airport.name} ({airport.code})-{airport.location}
-                  </h2>
-                ))}
-              <h5>
-                $30 <s>$40</s>
-              </h5>
-              <button onClick={handleBook}>Book now</button>
-            </div>
+        <div className="container">
+       {airports &&
+         airports.map((airport, index) => (
+         <div className="information" key={airport.id}>
+        <img
+          src="https://media.istockphoto.com/id/155439315/photo/passenger-airplane-flying-above-clouds-during-sunset.jpg?s=612x612&w=0&k=20&c=LJWadbs3B-jSGJBVy9s0f8gZMHi2NvWFXa3VJ2lFcL0="
+          className="gal-img bst"
+        />
+        <h2 className="info">
+          <span>From : </span> {airport.name} ({airport.code})-{airport.location}
+        </h2>
+        {index < airports.length  && (
+          <h2 className="info">
+            <span>To : </span>
+            {airports[airports.length -index- 1].name} ({airports[airports.length - 1].code})-{airports[airports.length - 1].location}
+          </h2>
+        )}
+        <button onClick={handleBook}>Book now</button>
+       </div>
+       ))}
+       </div>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ function App() {
         {!userDetails && <Route path="/user/sign-up" element={<Signup />} />}
         {!userDetails && <Route path="/user/sign-in" element={<Signin />} />}
         {userDetails && <Route path="/activities" element={<Activity />} />}
-        {userDetails && <Route path="/flights" element={<Flight />} />}
+       <Route path="/flights" element={<Flight />} />
         {userDetails && userDetails.user.userType === "admin" && (
           <Route path="/dashboard" element={<Dashboard />} />
         )}

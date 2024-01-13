@@ -44,9 +44,9 @@ airportRouter.post(
   })
 );
 airportRouter.get(
-  "/delete/id",
+  "/delete/:id",
   expressAsyncHandler(async (req, res) => {
-    await Airport.findOneAndDelete({ id: req.params.id });
+    await Airport.findOneAndDelete({ _id: req.params.id });
     const airports = await Airport.find({});
     res.send(airports);
     return;

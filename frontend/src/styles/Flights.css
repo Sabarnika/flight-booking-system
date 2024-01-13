@@ -1,0 +1,38 @@
+.heading
+{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(19, 227, 250);
+    font-size: 32px;
+}
+.information img
+{
+   width: 100%;
+   height: auto;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.information {
+    width: 30%; 
+    margin: 10px;
+    text-align: center;
+}
+.information img {
+    width: 100%; 
+    height: auto; 
+    border-radius: 10px;
+}
+button {
+    margin-top: 10px;
+    border-radius: 10px;
+    background: rgb(105, 105, 252);
+    color: white;
+}
+.info
+{
+    font-size: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

@@ -7,7 +7,8 @@ const scheduleSchema = new mongoose.Schema({
   arrivalTime: { type: String },
   seats: [
     {
-      class: { type: String },
+      class: { type: String,
+      default:"Economic" },
       countSeats: { type: Number },
       fare: { type: Number },
     },

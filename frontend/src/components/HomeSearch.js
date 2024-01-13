@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Axios from "axios";
 import Loading from "./Loading";
 import { Store } from "../store";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -17,59 +18,53 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
 function HomeSearch() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userDetails, airports } = state;
   const [{ loading }, dispatch] = useReducer(reducer, { loading: false });
-  const [depatureAirport, setDepatureAirport] = useState("");
+  const [departureAirport, setDepartureAirport] = useState("");
   const [arrivalAirport, setArrivalAirport] = useState("");
   const [searchDate, setSearchDate] = useState("");
-  const fetchAirports = async () => {
-    try {
-      dispatch({ type: "FETCH_REQUEST" });
-      const { data } = await Axios.get("http://localhost:5000/airport/fetch");
-      localStorage.setItem("airports", JSON.stringify(data));
-      ctxDispatch({ type: "ADD_AIRPORT", payload: data });
-      dispatch({ type: "FETCH_SUCCESS" });
-    } catch (err) {
-      dispatch({ type: "FETCH_FAILED" });
-      toast.error(getError(err));
-    }
-  };
+  const [schedules, setSchedules] = useState([]);
+
   useEffect(() => {
-    fetchAirports();
-  }, []);
-  const handleSearch = async (e) => {
-    e.preventDefault();
+    if (departureAirport && arrivalAirport && searchDate) {
+      fetchSchedules();
+    }
+  }, [departureAirport, arrivalAirport, searchDate]);
+
+  const fetchSchedules = async () => {
     try {
       dispatch({ type: "FETCH_REQUEST" });
       const { data } = await Axios.post("http://localhost:5000/search/fetch", {
-        depatureAirport,
+        departureAirport,
         arrivalAirport,
         searchDate,
       });
-      ctxDispatch({
-        type: "SEARCH",
-        payload: { isSearch: true, searchSchedules: data },
-      });
+      setSchedules(data);
       dispatch({ type: "FETCH_SUCCESS" });
     } catch (err) {
       dispatch({ type: "FETCH_FAILED" });
       toast.error(getError(err));
     }
+  };
+
+  const handleBookNow = () => {
     navigate("/bookings");
   };
+
   return (
     <div>
       <Loading />
-      <form onSubmit={handleSearch}>
+      <form>
         <div className="input-fields">
-          <label htmlFor="depAirport">Depature Airport</label>
+          <label htmlFor="depAirport">Departure Airport</label>
           <select
             id="depAirport"
-            value={depatureAirport}
-            onChange={(e) => setDepatureAirport(e.target.value)}
+            value={departureAirport}
+            onChange={(e) => setDepartureAirport(e.target.value)}
             required
           >
             <option></option>
@@ -98,7 +93,7 @@ function HomeSearch() {
           </select>
         </div>
         <div className="input-fields">
-          <label htmlFor="time">Depature Time</label>
+          <label htmlFor="time">Departure Time</label>
           <input
             type="date"
             id="time"
@@ -107,10 +102,24 @@ function HomeSearch() {
             required
           />
         </div>
-        <button type="submit">SEARCH</button>
       </form>
+      <div>
+        {loading && <p>Loading...</p>}
+        {schedules.length > 0 ? (
+          <div>
+            <h2>Schedules Available:</h2>
+            {schedules.map((schedule) => (
+              <div key={schedule.id}>
+                <p>Flight from {schedule.departureAirport} to {schedule.arrivalAirport} on {schedule.date}</p>
+                <button onClick={handleBookNow}>Book Now</button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No schedules found.</p>
+        )}
+      </div>
     </div>
   );
 }
-
 export default HomeSearch;
