@@ -18,17 +18,15 @@ const reducer = (state, action) => {
       return state;
   }
 };
-
 function Booking() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userDetails, airports } = state;
-  const [source, setSource] = useState('');
   const [depatureAirport, setDepatureAirport] = useState("");
   const [arrivalAirport, setArrivalAirport] = useState("");
   const [searchDate, setSearchDate] = useState("");
- 
-  const [dest, setDes] = useState('');
+  const [numSeats, setNumSeats] = useState(1); 
+  const [seatType, setSeatType] = useState("Economic"); 
   const [{ loading }, dispatch] = useReducer(reducer, { loading: false });
 
   const fetchAirports = async () => {
@@ -43,16 +41,29 @@ function Booking() {
       toast.error(getError(err));
     }
   };
-
   useEffect(() => {
     fetchAirports();
   }, []);
 
-  const handleBook = () => {
-    if (source && dest) {
-      navigate(`/bookings/${source}/${dest}`);
-    } else {
-      toast.error("Please select both source and destination airports.");
+  const handleBook = async () => {
+    try {
+      const response = await Axios.post("http://localhost:5000/admin/add-schedule", {
+        flightId:"02",
+        departureAirport: depatureAirport,
+        arrivalAirport: arrivalAirport,
+        seats: [
+          {
+            class: seatType,
+            countSeats: numSeats,
+            fare: seatType==="Economic" ? 2000 : 5000,
+          },
+        ],
+        date: searchDate,
+      });
+
+      toast.success("Schedule added successfully!");
+    } catch (err) {
+      toast.error(getError(err));
     }
   };
   return (
@@ -63,56 +74,78 @@ function Booking() {
           <div>
             <hr />
             <div className="container">
-            <div>
-<label htmlFor="depAirport">Depature Airport</label>
-<select
-  id="depAirport"
-  value={depatureAirport}
-  onChange={(e) => setDepatureAirport(e.target.value)}
-  required
->
-  <option></option>
-  {airports &&
-    airports.map((airport) => (
-      <option key={airport.id} value={airport.code}>
-        {airport.name} ({airport.code})-{airport.location}
-      </option>
-    ))}
-</select>
-</div>
-<div className="input-feilds">
-<label htmlFor="arrAirport">Arrival Airport</label>
-<select
-  id="arrAirport"
-  value={arrivalAirport}
-  onChange={(e) => setArrivalAirport(e.target.value)}
-  required
->
-  <option></option>
-  {airports.map((airport) => (
-    <option key={airport.id} value={airport.code}>
-      {airport.name} ({airport.code})-{airport.location}
-    </option>
-  ))}
-</select>
-</div>
-<div className="input-fields">
-<label htmlFor="time">Depature Time</label>
-<input
-  type="date"
-  id="time"
-  value={searchDate}
-  onChange={(e) => setSearchDate(e.target.value)}
-  required
-/>
-</div>
-<button type="submit">SEARCH</button>
-           </div>
+              <div>
+                <label htmlFor="depAirport">Departure Airport</label>
+                <select
+                  id="depAirport"
+                  value={depatureAirport}
+                  onChange={(e) => setDepatureAirport(e.target.value)}
+                  required
+                >
+                  <option></option>
+                  {airports &&
+                    airports.map((airport) => (
+                      <option key={airport.id || airport.code} value={airport.code}>
+                        {airport.name} ({airport.code})-{airport.location}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="input-fields">
+                <label htmlFor="arrAirport">Arrival Airport</label>
+                <select
+                  id="arrAirport"
+                  value={arrivalAirport}
+                  onChange={(e) => setArrivalAirport(e.target.value)}
+                  required
+                >
+                  <option></option>
+                  {airports.map((airport) => (
+                    <option key={airport.id || airport.code} value={airport.code}>
+                      {airport.name} ({airport.code})-{airport.location}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="input-fields">
+                <label htmlFor="time">Departure Time</label>
+                <input
+                  type="date"
+                  id="time"
+                  value={searchDate}
+                  onChange={(e) => setSearchDate(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="input-fields">
+                <label>No of Seats</label>
+                <input
+                  type="number"
+                  value={numSeats}
+                  onChange={(e) => setNumSeats(parseInt(e.target.value, 10))}
+                />
+              </div>
+              <div className="input-fields">
+                <label>Seat type</label>
+                <select
+                  value={seatType}
+                  onChange={(e) => setSeatType(e.target.value)}
+                >
+                  <option value="Economic">Economic</option>
+                  <option value="Buisness">Buisness</option>
+                </select>
+              </div>
+              <button type="submit" className="book" onClick={handleBook}>
+                Book Now
+              </button>
+              <p>Total cost : {numSeats * (seatType === "Economic" ? 2000 : 5000)}</p>
+            </div>
           </div>
         </div>
-      <hr />
+        <hr />
       </div>
     </div>
   );
 }
+
 export default Booking;

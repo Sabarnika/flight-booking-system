@@ -15,7 +15,7 @@ const scheduleSchema = new mongoose.Schema({
   ],
   status: { type: String },
   date: { type: Date },
+  
 });
-
 const Schedule = mongoose.model("Schedule", scheduleSchema);
 module.exports = Schedule;

@@ -28,6 +28,7 @@
   text-align: center;
 }
 .info {
+  margin-top: 10%;
   text-align: center;
 }
 .info h5,
@@ -111,4 +112,10 @@ hr {
 }
 .travel-route h5:hover {
   background: rgb(241, 217, 184);
+}
+.book
+{
+  margin-left:45%;
+  padding: 5px;
+  border-radius: 7px;
 }

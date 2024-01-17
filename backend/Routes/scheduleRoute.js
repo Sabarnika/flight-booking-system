@@ -22,7 +22,7 @@ scheduleRouter.post("/add-schedule",expressAsyncHandler(async(req,res)=>
         }
     )
     await schedule.save();
-    const schedules=Schedule.find({})
+    const schedules=await Schedule.find({})
     res.send(schedules)
 }))
-module.exports=scheduleRouter
+module.exports=scheduleRouter;

@@ -21,11 +21,17 @@ exports.isAuth = (req, res, next) => {
   if (authorization) {
     const token = authorization.slice(7, authorization.length);
     jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
-      if (err) res.status(400).send({ message: "Invalid Token!" });
-      else {
+      if (err) {
+        console.error('Error verifying token:', err);
+        res.status(400).send({ message: "Invalid Token!" });
+      } else {
+        console.log('Decoded Token:', decode);
         req.user = decode;
         next();
       }
     });
-  } else res.status(400).send({ message: "No token" });
+  } else {
+    console.error('No token provided.');
+    res.status(400).send({ message: "No token" });
+  }
 };

@@ -1,8 +1,6 @@
 const express = require("express");
 const expressAsyncHandler = require("express-async-handler");
 const { isAuth } = require("../util");
-const Airport = require("../model/airportModel");
-const Airline = require("../model/airlineModel");
 const Schedule = require("../model/scheduleModel");
 const searchRouter = express.Router();
 searchRouter.post(

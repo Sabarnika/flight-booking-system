@@ -1,6 +1,12 @@
 import React from "react";
-
+import {useNavigate} from "react-router-dom";
+import '../styles/HomeScreen.css'
 function BestRoute() {
+  const navigate = useNavigate();
+  const handleBook=()=>
+  {
+    navigate("/bookings");
+  }
   return (
     <div className="travel-best-route">
       <h2>Book Cheap Flights and FlyHigh</h2>
@@ -16,6 +22,7 @@ function BestRoute() {
           <h5 className="best-route">Delhi</h5>
           <h5 className="best-route">Pune</h5>
         </div>
+        <button onClick={handleBook} className="book">Book Now</button>
         <h3>International Flights</h3>
         <div className="travel-route">
           <h5 className="best-route">America</h5>
@@ -26,6 +33,7 @@ function BestRoute() {
           <h5 className="best-route">Sweden</h5>
           <h5 className="best-route">Thailand</h5>
         </div>
+        <button onClick={handleBook} className="book">Book Now</button>
       </div>
       <hr />
     </div>
