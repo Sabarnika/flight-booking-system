@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { getError } from "../util";
 import Axios from "axios";
 import Loading from "../components/Loading";
+import '../styles/login.css'
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -45,9 +46,11 @@ function Signin() {
   return (
     <div>
       {loading && <Loading />}
+      
+      <div className="login-container">\
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
-        <div className="form-group">
+        <div className="form-group col-sm-6">
           <label htmlFor="email">
             Email<span>*</span>
           </label>
@@ -60,7 +63,7 @@ function Signin() {
             placeholder="Enter here"
           />
         </div>
-        <div className="form-group">
+        <div className="form-group col-sm-6">
           <label htmlFor="pass">
             Password<span>*</span>
           </label>
@@ -91,6 +94,7 @@ function Signin() {
       <h4>Don't you have account?</h4>
       <Link to="/user/sign-up">Register</Link>
     </div>
+</div>
   );
 }
 

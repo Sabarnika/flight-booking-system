@@ -33,10 +33,10 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to={userDetails ? "/activities" : "/user/sign-in"}
+                to={userDetails ? "/bookings" : "/user/sign-in"}
                 className="nav-link"
               >
-                Activity
+                Book a flight
               </Link>
             </li>
             <li className="nav-item">

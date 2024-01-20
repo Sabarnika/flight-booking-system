@@ -47,7 +47,7 @@ function Signup() {
               email,
               age,
               phone,
-              place,
+              place:"Erode",
               password: pass,
             }
           );
@@ -72,9 +72,10 @@ function Signup() {
   return (
     <div>
       {loading && <Loading />}
-      <h1>Sign up</h1>
+      <div className="signup-container">
+        <h1>Sign up</h1>
       <form onSubmit={handleSignup}>
-        <div className="form-group">
+        <div className="form-group col-sm-6">
           <label htmlFor="name">
             Name<span>*</span>
           </label>
@@ -87,7 +88,7 @@ function Signup() {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group col-sm-6">
           <label htmlFor="email">
             Email<span>*</span>
           </label>
@@ -100,7 +101,7 @@ function Signup() {
             placeholder="Enter here"
           />
         </div>
-        <div className="form-group">
+        <div className="form-group col-sm-6">
           <label htmlFor="age">
             Age<span>*</span>
           </label>
@@ -113,7 +114,7 @@ function Signup() {
             placeholder="Enter here"
           />
         </div>
-        <div className="form-group">
+        <div className="form-group col-sm-6">
           <label htmlFor="Phone">
             Phone<span>*</span>
           </label>
@@ -126,21 +127,7 @@ function Signup() {
             placeholder="Enter here"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="Place">
-            Place<span>*</span>
-          </label>
-          <input
-            type="text"
-            value={place}
-            onChange={(e) => setPlace(e.target.value)}
-            className="form-control"
-            id="Place"
-            placeholder="Enter here"
-          />
-        </div>
-
-        <div className="form-group">
+        <div className="form-group col-sm-6">
           <label htmlFor="pass">
             Password<span>*</span>
           </label>
@@ -150,10 +137,11 @@ function Signup() {
             onChange={(e) => setPass(e.target.value)}
             className="form-control"
             id="pass"
-            placeholder="Password should contain atleast 1 special character,1 digit ans 1 uppercase of 8-15 characters"
+            placeholder="Enter Password"
           />
+          <p>Password should contain atleast 1 special character,1 digit ans 1 uppercase of 8-15 characters</p>
         </div>
-        <div className="form-group">
+        <div className="form-group col-sm-6">
           <label htmlFor="cpass">
             Re-enter Password<span>*</span>
           </label>
@@ -181,8 +169,10 @@ function Signup() {
           Register
         </button>
       </form>
-      <h4>Already have an account?</h4>
+      <h4>Already have an account?
       <Link to="/user/sign-in">Login</Link>
+      </h4>
+    </div>
     </div>
   );
 }

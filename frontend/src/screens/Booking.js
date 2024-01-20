@@ -25,7 +25,7 @@ function Booking() {
   const [depatureAirport, setDepatureAirport] = useState("");
   const [arrivalAirport, setArrivalAirport] = useState("");
   const [searchDate, setSearchDate] = useState("");
-  const [numSeats, setNumSeats] = useState(1); 
+  const [numSeats, setNumSeats] = useState(0); 
   const [seatType, setSeatType] = useState("Economic"); 
   const [{ loading }, dispatch] = useReducer(reducer, { loading: false });
 
@@ -61,7 +61,7 @@ function Booking() {
         date: searchDate,
       });
 
-      toast.success("Schedule added successfully!");
+      toast.success("Flight booked successfully!");
     } catch (err) {
       toast.error(getError(err));
     }
@@ -70,17 +70,16 @@ function Booking() {
     <div>
       <h2 className="heading">Book your tickets and fly high</h2>
       <div>
-        <div>
-          <div>
             <hr />
             <div className="container">
-              <div>
+              <div className="input-fields col-sm-6">
                 <label htmlFor="depAirport">Departure Airport</label>
                 <select
                   id="depAirport"
                   value={depatureAirport}
                   onChange={(e) => setDepatureAirport(e.target.value)}
                   required
+                  className="form-select form-select-sm" aria-label=".form-select-sm example"
                 >
                   <option></option>
                   {airports &&
@@ -91,13 +90,14 @@ function Booking() {
                     ))}
                 </select>
               </div>
-              <div className="input-fields">
+              <div className="input-fields col-sm-6">
                 <label htmlFor="arrAirport">Arrival Airport</label>
                 <select
                   id="arrAirport"
                   value={arrivalAirport}
                   onChange={(e) => setArrivalAirport(e.target.value)}
                   required
+                  className="form-select form-select-sm" aria-label=".form-select-sm example"
                 >
                   <option></option>
                   {airports.map((airport) => (
@@ -107,27 +107,30 @@ function Booking() {
                   ))}
                 </select>
               </div>
-              <div className="input-fields">
+              <div className="input-fields col-sm-6">
                 <label htmlFor="time">Departure Time</label>
                 <input
                   type="date"
                   id="time"
+                  className="form-control"
                   value={searchDate}
                   onChange={(e) => setSearchDate(e.target.value)}
                   required
                 />
               </div>
-              <div className="input-fields">
+              <div className="input-fields col-sm-6">
                 <label>No of Seats</label>
                 <input
                   type="number"
+                  className="form-control"
                   value={numSeats}
                   onChange={(e) => setNumSeats(parseInt(e.target.value, 10))}
                 />
               </div>
-              <div className="input-fields">
+              <div className="input-fields col-sm-6">
                 <label>Seat type</label>
                 <select
+                className="form-select form-select-sm" aria-label=".form-select-sm example"
                   value={seatType}
                   onChange={(e) => setSeatType(e.target.value)}
                 >
@@ -135,13 +138,11 @@ function Booking() {
                   <option value="Buisness">Buisness</option>
                 </select>
               </div>
+              </div>   
               <button type="submit" className="book" onClick={handleBook}>
                 Book Now
               </button>
-              <p>Total cost : {numSeats * (seatType === "Economic" ? 2000 : 5000)}</p>
-            </div>
-          </div>
-        </div>
+              <p className="total-cost">Total cost : {numSeats * (seatType === "Economic" ? 2000 : 5000)}</p> 
         <hr />
       </div>
     </div>

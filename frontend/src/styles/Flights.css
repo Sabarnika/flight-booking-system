@@ -1,38 +1,52 @@
-.heading
-{
+.heading {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: rgb(19, 227, 250);
     font-size: 32px;
 }
-.information img
-{
-   width: 100%;
-   height: auto;
-}
+
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
 .information {
-    width: 30%; 
+    width: calc(33.33% - 20px * 2); /* Adjust the margin as needed */
     margin: 10px;
     text-align: center;
+    box-sizing: border-box; /* Include padding and borders in the width */
 }
+
 .information img {
-    width: 100%; 
-    height: auto; 
+    width: 100%;
+    height: auto;
     border-radius: 10px;
 }
+
 button {
     margin-top: 10px;
-    border-radius: 10px;
-    background: rgb(105, 105, 252);
+    padding: 7px;
+    border-radius: 25px;
+    background: rgb(135, 135, 245);
     color: white;
 }
-.info
-{
+.info {
     font-size: 25px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.input-fields {
+    margin: 10px;
+    padding: 10px;
+}
+
+label {
+    margin-right: 10px;
+}
+.total-cost
+{
+    margin: 10px;
+    margin-left: 43%;
+    color: rgb(104, 180, 241);
 }

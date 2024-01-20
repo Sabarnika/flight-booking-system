@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Axios from "axios";
 import Loading from "./Loading";
 import { Store } from "../store";
-
+import '../styles/HomeScreen.css';
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -54,7 +54,7 @@ function HomeSearch() {
     navigate("/bookings");
   };
   return (
-    <div>
+    <div className="search">
       <form>
         <div className="input-fields">
           <label htmlFor="depAirport">Departure Airport</label>
@@ -63,6 +63,7 @@ function HomeSearch() {
             value={departureAirport}
             onChange={(e) => setDepartureAirport(e.target.value)}
             required
+            className="form-select form-select-sm" aria-label=".form-select-sm example"
           >
             <option></option>
             {airports &&
@@ -77,10 +78,11 @@ function HomeSearch() {
           <label htmlFor="arrAirport">Arrival Airport</label>
           <select
             id="arrAirport"
+            className="form-select form-select-sm" aria-label=".form-select-sm example"
             value={arrivalAirport}
             onChange={(e) => setArrivalAirport(e.target.value)}
             required
-          >
+           >
             <option></option>
             {airports.map((airport) => (
               <option key={airport.id} value={airport.code}>
@@ -94,6 +96,7 @@ function HomeSearch() {
           <input
             type="date"
             id="time"
+            className="form-control col-sm-1"
             value={searchDate}
             onChange={(e) => setSearchDate(e.target.value)}
             required

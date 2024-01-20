@@ -3,7 +3,6 @@ import Signup from "./screens/Signup";
 import Signin from "./screens/Signin";
 import HomeScreen from "./screens/HomeScreen";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Activity from "./screens/Activity";
 import Dashboard from "./screens/Dashboard";
 import { useContext } from "react";
 import { Store } from "./store";
@@ -19,7 +18,6 @@ function App() {
         <Route path="/" element={<HomeScreen />} />
         {!userDetails && <Route path="/user/sign-up" element={<Signup />} />}
         {!userDetails && <Route path="/user/sign-in" element={<Signin />} />}
-        {userDetails && <Route path="/activities" element={<Activity />} />}
        <Route path="/flights" element={<Flight />} />
         {userDetails && userDetails.user.userType === "admin" && (
           <Route path="/dashboard" element={<Dashboard />} />

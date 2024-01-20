@@ -9,10 +9,10 @@ function HomeScreen() {
   return (
     <div className="homescreen">
       <Navbar />
+      <HomeSearch />
       <BestOffer />
       <PopularRoute />
       <BestRoute />
-      <HomeSearch />
     </div>
   );
 }

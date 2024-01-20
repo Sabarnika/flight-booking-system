@@ -119,3 +119,22 @@ hr {
   padding: 5px;
   border-radius: 7px;
 }
+.search
+{
+  display: block; 
+}
+.search 
+{
+  padding: 10px;
+  margin-left: 35%;
+} 
+.input-fields select.form-select,
+.input-fields input.form-control {
+  width: 50%;
+}
+@media (max-width: 768px) {
+  .input-fields select.form-select,
+  .input-fields input.form-control {
+    width: 100%; 
+  }
+}
