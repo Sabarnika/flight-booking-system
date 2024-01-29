@@ -7,11 +7,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const userRoute = require("./Routes/userRoute");
 const airlineRoute = require("./Routes/airlineRoute");
-const airportRoute = require("./Routes/airportRoute");
 const searchRoute = require("./Routes/searchRoute");
 const scheduleRoute = require("./Routes/scheduleRoute");
+const bookingRouter=require('./Routes/bookingRoute')
 app.use(cors());
 dotenv.config();
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -22,9 +24,9 @@ mongoose
   });
 app.use("/user", userRoute);
 app.use("/airline", airlineRoute);
-app.use("/airport", airportRoute);
 app.use("/search", searchRoute);
 app.use("/admin",scheduleRoute);
+app.use("/customer",bookingRouter)
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server listening at PORT ${PORT}`);

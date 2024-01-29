@@ -41,8 +41,9 @@ function HomeSearch() {
       const { data } = await Axios.post("http://localhost:5000/search/fetch", {
         departureAirport,
         arrivalAirport,
-        searchDate:new Date(searchDate),
+        searchDate: new Date(searchDate),
       });
+    //  console.log(data); 
       setSchedules(data);
       dispatch({ type: "FETCH_SUCCESS" });
     } catch (err) {
@@ -50,6 +51,7 @@ function HomeSearch() {
       toast.error(getError(err));
     }
   };
+  
   const handleBookNow = () => {
     navigate("/bookings");
   };
@@ -74,6 +76,17 @@ function HomeSearch() {
               ))}
           </select>
         </div>
+        {schedules.map((schedule) => (
+  <div key={schedule.id}>
+    <p>Flight with code from {schedule.departureAirport} to {schedule.arrivalAirport} on your given Date</p>
+    <button onClick={handleBookNow}>Book Now</button>
+    <select>
+      <option value={schedule.departureAirport}>Departure: {schedule.departureAirport}</option>
+      <option value={schedule.arrivalAirport}>Arrival: {schedule.arrivalAirport}</option>
+    </select>
+  </div>
+))}
+
         <div className="input-feilds">
           <label htmlFor="arrAirport">Arrival Airport</label>
           <select

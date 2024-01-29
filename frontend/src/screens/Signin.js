@@ -46,8 +46,7 @@ function Signin() {
   return (
     <div>
       {loading && <Loading />}
-      
-      <div className="login-container">\
+      <div className="login-container">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <div className="form-group col-sm-6">

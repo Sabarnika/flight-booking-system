@@ -7,15 +7,11 @@ const scheduleSchema = new mongoose.Schema({
   arrivalTime: { type: String },
   seats: [
     {
-      class: { type: String,
-      default:"Economic" },
-      countSeats: { type: Number },
-      fare: { type: Number },
+      countSeats: { type: Number }
     },
   ],
   status: { type: String },
   date: { type: Date },
-  
 });
 const Schedule = mongoose.model("Schedule", scheduleSchema);
 module.exports = Schedule;

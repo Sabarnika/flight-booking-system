@@ -1,14 +1,21 @@
 {
   "dependencies": {
+    "assert": "^2.1.0",
     "bcrypt": "^5.1.1",
+    "browserify-zlib": "^0.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
+    "follow-redirects": "^1.15.5",
+    "https-browserify": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "nodemon": "^3.0.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "util": "^0.12.5"
   },
   "name": "backend",
   "version": "1.0.0",

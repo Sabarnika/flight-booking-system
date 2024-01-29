@@ -8,6 +8,7 @@ userRoute.post(
   "/sign-up",
   expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
+    
     if (user) {
       res.status(404).send("Email already exists");
       return;
@@ -48,8 +49,8 @@ userRoute.post(
       res.status(404).send({ message: "Account not found!" });
       return;
     }
-    console.log("Provided Password:", req.body.password);
-    console.log("Stored Password:", user.password);
+   // console.log("Provided Password:", req.body.password);
+   // console.log("Stored Password:", user.password);
     try {
       const validPassword = await bcrypt.compareSync(
         req.body.password,

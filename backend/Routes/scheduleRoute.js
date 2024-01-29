@@ -9,13 +9,15 @@ scheduleRouter.post("/add-schedule",expressAsyncHandler(async(req,res)=>
         {
             flightId:req.body.flightId,
             departureAirport:req.body.departureAirport,
+            arrrivalTime:req.body.arrrivalTime,
+            departureTime:req.body.departureTime,
             arrivalAirport:req.body.arrivalAirport,
             seats:
             [
                 {
-                class:req.body.class,
+              //  class:req.body.class,
                 countSeats:req.body.countSeats,
-                fare:req.body.fare,
+              //  fare:fare,
                 }
             ],
             date:req.body.date
@@ -24,5 +26,10 @@ scheduleRouter.post("/add-schedule",expressAsyncHandler(async(req,res)=>
     await schedule.save();
     const schedules=await Schedule.find({})
     res.send(schedules)
+}))
+scheduleRouter.get("/",expressAsyncHandler(async(req,res)=>
+{
+  const schedules = await Schedule.find({});
+  res.send(schedules);
 }))
 module.exports=scheduleRouter;

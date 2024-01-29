@@ -25,11 +25,9 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item">
-              {userDetails && userDetails.user.userType !== "customer" && (
-                <Link to="/dashboard" className="nav-link">
-                  Dashboard
-                </Link>
-              )}
+              <Link to="/activity" className="nav-link">
+                Activities
+              </Link>
             </li>
             <li className="nav-item">
               <Link
