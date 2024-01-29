@@ -38,7 +38,7 @@ function List() {
   }, []);
   return (
     <div>
-      <h2>User Bookings</h2>
+      <h2>User Booking</h2>
       <ul>
         {bookings.map((booking) => (
           <li key={booking.date}>
