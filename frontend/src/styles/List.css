@@ -1,0 +1,39 @@
+.bookings-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+}
+.root h2
+{
+  color: blue;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.booking-item {
+  background-color: rgb(228, 240, 243);
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  margin: 5px;
+  border-radius: 13px;
+  width: calc(33.33% - 20px); 
+}
+
+.del {
+  color: white;
+  background-color: rgb(252, 191, 191);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+h2 {
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

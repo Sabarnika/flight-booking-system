@@ -2,15 +2,18 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../store";
 import { toast } from "react-toastify";
+
 function Navbar() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userDetails, search } = state;
+
   const logoutHandler = () => {
+    const userName = userDetails?.user?.name || "User";
     navigate("/");
+    toast.success(userName + " signed out successfully");
     localStorage.removeItem("userDetails");
     ctxDispatch({ type: "SIGN_OUT" });
-    toast.success(userDetails.user.name + " signed out successfully");
   };
 
   return (
@@ -20,6 +23,7 @@ function Navbar() {
           <img
             src="https://t3.ftcdn.net/jpg/01/21/05/58/240_F_121055831_PELQCbjwuiTc6DSaguE8u6OJUjJ1VC0l.jpg"
             style={{ height: "100px" }}
+            alt="Logo"
           />
         </a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -29,25 +33,58 @@ function Navbar() {
                 Activities
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to={userDetails ? "/bookings" : "/user/sign-in"}
-                className="nav-link"
-              >
-                Book a flight
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to={userDetails ? "/flights" : "/user/sign-in"}
-                className="nav-link"
-              >
-                Flights
-              </Link>
-            </li>
+            {userDetails?.user?.userType !== "customer" && (
+              <li className="nav-item">
+                <Link
+                  to={userDetails ? "/bookings" : "/user/sign-in"}
+                  className="nav-link"
+                >
+                  Schedule a flight
+                </Link>
+              </li>
+            )}
+            {userDetails?.user?.userType === "customer" && (
+              <li className="nav-item">
+                <Link
+                  to={userDetails ? "/bookings" : "/user/sign-in"}
+                  className="nav-link"
+                >
+                  Book a flight
+                </Link>
+              </li>
+            )} 
+            {userDetails?.user?.userType !== "customer" && (
+              <li className="nav-item">
+                <Link
+                  to={userDetails ? "/flights" : "/user/sign-in"}
+                  className="nav-link"
+                >
+                  Add a Flight
+                </Link>
+              </li>
+            )}
+             {userDetails?.user?.userType === "customer" && (
+              <li className="nav-item">
+                <Link
+                  to={userDetails ? "/check" : "/user/sign-in"}
+                  className="nav-link"
+                >
+                  Available Schedules
+                </Link>
+              </li>
+            )}
+            {userDetails?.user?.userType === "customer" && (
+              <li className="nav-item">
+                <Link
+                  to={userDetails ? "/flights" : "/user/sign-in"}
+                  className="nav-link"
+                >
+                  Flights
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
-
         <input
           className="form-control mr-sm-2"
           type="search"
@@ -55,10 +92,12 @@ function Navbar() {
           aria-label="Search"
         />
         <ul className="navbar-nav">
-          {userDetails ? (
-            <Link to="#" onClick={logoutHandler} className="nav-link">
-              Log out
-            </Link>
+          {userDetails && userDetails.user ? (
+            <li className="nav-item">
+              <Link to="#" onClick={logoutHandler} className="nav-link">
+                Log out
+              </Link>
+            </li>
           ) : (
             <div>
               <li className="nav-item">

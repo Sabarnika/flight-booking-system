@@ -3,6 +3,7 @@ import { Store } from '../store';
 import Axios from 'axios';
 import { getError } from "../util";
 import { toast } from "react-toastify";
+import '../styles/List.css'
 function List() {
   const { state } = useContext(Store);
   const { userDetails } = state;
@@ -36,12 +37,21 @@ function List() {
   useEffect(() => {
     fetchBookings(); 
   }, []);
+  const deleteBooking = async (date) => {
+    try {
+      await Axios.put(`http://localhost:5000/customer/delete/${date}`);
+       setBookings((prevBookings) => prevBookings.filter((booking) => booking.date !== date));
+    } 
+    catch (err) {
+      toast.error(getError(err));
+    }
+  };  
   return (
-    <div>
+    <div className='root'>
       <h2>User Bookings</h2>
-      <ul>
+      <ul className="bookings-container">
         {bookings.map((booking) => (
-          <li key={booking.date}>
+          <li key={booking.date} className="booking-item">
             <div>Flight ID: {booking.flightId}</div>
             <div>Departure Airport: {booking.depAirport}</div>
             <div>Arrival Airport: {booking.arrAirport}</div>
@@ -50,9 +60,9 @@ function List() {
             <div>Date: {booking.date}</div>
             <div>Fare: {booking.fare}</div>
             <hr />
-          </li>
+            <button className='del' onClick={() => deleteBooking(booking.date)}>Delete</button>
+           </li> 
         ))}
-        <h1>d</h1>
       </ul>
     </div>
   );

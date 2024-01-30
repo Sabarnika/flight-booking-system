@@ -9,6 +9,7 @@ import Flight from "./components/Flight";
 import "./App.css";
 import Booking from "./screens/Booking";
 import List from "./screens/List";
+import Schedules from "./components/Schedules";
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userDetails } = state;
@@ -20,8 +21,12 @@ function App() {
         {!userDetails && <Route path="/user/sign-in" element={<Signin />} />}
        <Route path="/flights" element={<Flight />} />
         {userDetails && <Route path="/bookings" element={<Booking />} />}
+        {!userDetails && <Route path="/bookings" element={<Signin />} />}
         {userDetails && <Route path="/activity" element={<List/>}/>}
-      </Routes>
+        {userDetails && userDetails.user.userType=="customer" && <Route path="/check" element={<Schedules/>}/>}
+        {!userDetails && <Route path="/activity" element={<Signin/>}/>}
+        <Route path="/schedules" element={<Schedules/>}/>
+     </Routes>
     </Router>
   );
 }

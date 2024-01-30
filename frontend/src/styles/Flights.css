@@ -10,7 +10,26 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
-
+.addFlights
+{
+    margin-left: 30%;
+    margin-top: 3%;
+}
+.addFlights .addFlight
+{
+    margin:20px;
+    margin-left: 20%;
+}
+.flights h2
+{
+    margin-top: 1%;
+    color: rgb(15, 38, 212);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.addFlights form label
+{
+    margin: 10px;
+}
 .information {
     width: calc(33.33% - 20px * 2); /* Adjust the margin as needed */
     margin: 10px;
@@ -40,7 +59,10 @@ button {
     margin: 10px;
     padding: 10px;
 }
-
+.addFlights
+{
+    margin: 10px;
+}
 label {
     margin-right: 10px;
 }

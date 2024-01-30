@@ -1,6 +1,6 @@
 .login-container
 {
-    margin-left: 30%;
+    margin-left: 10%;
     margin-top: 10%;
 }
 .login-container label
@@ -9,15 +9,29 @@
 }
 .signup-container
 {
-    margin-left: 30%;
+    margin-left: 10%;
 }
 .signup-container label,h4
 {
     padding: 6px;
 }
-h1
+.signup-container h4
+{
+    margin-top: 10px;
+    margin-left: 30%;
+}
+.login-container h4
+{
+    margin-top: 10px;
+    margin-left: 30%;
+}
+.btn
+{
+    margin-left: 20%;
+}
+.login-container h1,.signup-container h1
 {
     color: blue;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-left: 20%;
+    margin-left: 35%;
 }

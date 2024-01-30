@@ -9,7 +9,7 @@ scheduleRouter.post("/add-schedule",expressAsyncHandler(async(req,res)=>
         {
             flightId:req.body.flightId,
             departureAirport:req.body.departureAirport,
-            arrrivalTime:req.body.arrrivalTime,
+            arrivalTime:req.body.arrivalTime,
             departureTime:req.body.departureTime,
             arrivalAirport:req.body.arrivalAirport,
             seats:

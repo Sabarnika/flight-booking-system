@@ -90,11 +90,11 @@ function Signin() {
           Login
         </button>
       </form>
-      <h4>Don't you have account?</h4>
+      <h4>Don't you have account?
       <Link to="/user/sign-up">Register</Link>
+      </h4>
     </div>
 </div>
   );
 }
-
 export default Signin;

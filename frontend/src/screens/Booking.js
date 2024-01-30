@@ -4,7 +4,8 @@ import { getError } from "../util";
 import { toast } from "react-toastify";
 import Axios from "axios";
 import { Store } from "../store";
-import '../styles/Flights.css';
+import '../styles/Bookings.css';
+import Schedules from '../components/Schedules.js';
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -33,7 +34,7 @@ function Booking() {
   const [numSeats, setNumSeats] = useState(1); 
   const [seatType, setSeatType] = useState("Economic"); 
   const [date,setDate]=useState("")
-  const [schedules, setSchedules] = useState([]); // Added state for schedules
+  const [schedules, setSchedules] = useState([]); 
   const [{ loading }, dispatch] = useReducer(reducer, { loading: false });
   const [selectedFlightId, setSelectedFlightId] = useState("");
  const handleAddSchedule = async () => {
@@ -43,11 +44,12 @@ function Booking() {
         departureAirport: depPort,
         arrivalAirport: arrPort,
         departureTime: depTime,
-        arrrivalTime: arrTime,
+        arrivalTime: arrTime,
         countSeats: seatCount,
         date: dates,
       });
       localStorage.setItem("schedules",JSON.stringify(data))
+      toast.success("Schedule added successfully!");
       setSchedules(data);
       setFlightId("");
       setDepPort("");
@@ -55,8 +57,7 @@ function Booking() {
       setDepTime("");
       setArrTime("");
       setSeatCount("");
-     toast.success("Schedule added successfully!");
-    } catch (err) {
+   } catch (err) {
       toast.error(getError(err));
     }
   };
@@ -98,13 +99,13 @@ function Booking() {
   }; 
   return (
     <div>
-      <h2 className="heading">Book your tickets and fly high</h2>
       {
         userDetails.user.userType!="customer" &&
         (
-          <div>
+          <div className="admin">
+            <h2 className="heading">Schedule a Flight</h2>
           <form>
-          <div className="input-fields col-sm-6">
+          <div className="input-field col-sm-6">
                   <label htmlFor="id">Flight Id</label>
                   <input
                     type="text"
@@ -115,7 +116,7 @@ function Booking() {
                     required
                   />
            </div>
-           <div className="input-fields col-sm-6">
+           <div className="input-field col-sm-6">
                   <label htmlFor="arrPort">Arrival Airport</label>
                   <input
                     type="text"
@@ -126,7 +127,7 @@ function Booking() {
                     required
                   />
                 </div>
-                <div className="input-fields col-sm-6">
+                <div className="input-field col-sm-6">
                   <label htmlFor="depPort">Departure Airport</label>
                   <input
                     type="text"
@@ -137,7 +138,7 @@ function Booking() {
                     required
                   />
                 </div>
-                <div className="input-fields col-sm-6">
+                <div className="input-field col-sm-6">
                   <label htmlFor="depTime">Departure Time</label>
                   <input
                     type="text"
@@ -148,7 +149,7 @@ function Booking() {
                     required
                   />
                 </div>
-                <div className="input-fields col-sm-6">
+                <div className="input-field col-sm-6">
                   <label htmlFor="arrTime">Arrival Time</label>
                   <input
                     type="text"
@@ -159,7 +160,7 @@ function Booking() {
                     required
                   />
                 </div>
-                <div className="input-fields col-sm-6">
+                <div className="input-field col-sm-6">
                   <label htmlFor="countSeat">Total Seats</label>
                   <input
                     type="number"
@@ -170,7 +171,7 @@ function Booking() {
                     required
                   />
                 </div>
-                <div className="input-fields col-sm-6">
+                <div className="input-field col-sm-6">
                   <label htmlFor="date">Date</label>
                   <input
                     type="date"
@@ -181,15 +182,24 @@ function Booking() {
                     required
                   />
                 </div>
-                <button onClick={handleAddSchedule}>Add Schedule</button>
+                <button onClick={handleAddSchedule} className="addSchedule">Add Schedule</button>
           </form>
         </div>
         )
       }
-         <div>
+      {
+        userDetails.user.userType=="customer" && (
+      <div className="cus">
+        <h2>Book your own flight and fly high</h2>
             <hr />
-            <div className="container">
-            <div className="input-fields col-sm-6">
+            <p>
+              Before Booking...Check whether the schedule is available or not...
+              <Link to="/schedules">
+                Click here
+              </Link>
+            </p>
+           <div className="contain">
+            <div className="input-field col-sm-6">
           <label htmlFor="depAirport">Departure Airport</label>
           <select
             id="depAirport"
@@ -210,7 +220,7 @@ function Booking() {
             ))}
           </select>
         </div>
-        <div className="input-fields col-sm-6">
+        <div className="input-field col-sm-6">
           <label htmlFor="arrAirport">Arrival Airport</label>
           <select
             id="arrAirport"
@@ -227,7 +237,7 @@ function Booking() {
             ))}
             </select>
            </div>
-              <div className="input-fields col-sm-6">
+              <div className="input-field col-sm-6">
                 <label>No of Seats</label>
                 <input
                   type="number"
@@ -236,7 +246,7 @@ function Booking() {
                   onChange={(e) => setNumSeats(e.target.value)}
                 />
               </div>
-              <div className="input-fields col-sm-6">
+              <div className="input-field col-sm-6">
                 <label>Date</label>
                 <input
                   type="date"
@@ -245,7 +255,7 @@ function Booking() {
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>
-              <div className="input-fields col-sm-6">
+              <div className="input-field col-sm-6">
                 <label>Seat type</label>
                 <select
                 className="form-select form-select-sm" aria-label=".form-select-sm example"
@@ -261,9 +271,11 @@ function Booking() {
                 Book Now
               </button>
               <p className="total-cost">Total cost : {numSeats * (seatType === "Economic" ? 2000 : 5000)}</p> 
-        <hr />
-      </div>
-    </div>
+         <hr />
+       </div>
+        )
+      }
+        </div>  
   );
 }
 export default Booking;

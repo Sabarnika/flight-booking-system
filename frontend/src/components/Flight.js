@@ -61,6 +61,7 @@ function Flight() {
         locationCode: locCode,
         time,
       });
+      toast.success("Flight added successfully!!!")
       localStorage.setItem("flights",JSON.stringify(data))
      ctxDispatch({ type: "ADD_FLIGHTS", payload: data });
      setId("");
@@ -68,7 +69,6 @@ function Flight() {
       setLoc("");
       setLocCode("");
       setTime("");
-     toast.success("Flight added successfully!");
     } catch (err) {
       toast.error(getError(err));
     }
@@ -77,7 +77,9 @@ function Flight() {
     <div>
       {
         userDetails.user.userType!="customer" && (
-          <div>
+          <div className="flights">
+            <h2>Add new Flight</h2>
+          <div className="addFlights">
           <form>
           <div className="form-group col-sm-6">
             <label htmlFor="id">
@@ -144,12 +146,16 @@ function Flight() {
               placeholder="Enter like 11 am , 9 30 pm"
             />
           </div>
-          <button onClick={handleAddFlight}>Add Flight</button>
+          <button onClick={handleAddFlight} className="addFlight">Add Flight</button>
           </form>
          </div>  
+         </div>
         )
-      }
-      <h2 className="heading">Best Offers Available upto 60%</h2>
+      } 
+      {
+       userDetails.user.userType=="customer" &&(
+        <div>
+        <h2 className="heading">Flights Available</h2>
         <div className="container">
        {flights &&
          flights.map((flight, index) => (
@@ -166,7 +172,10 @@ function Flight() {
        ))}
       </div>
       <hr />
-    </div>
+      </div>
+       )
+      }
+          </div>
   );
 }
 export default Flight;

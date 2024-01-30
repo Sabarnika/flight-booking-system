@@ -24,6 +24,7 @@ const reducer = (state, action) => {
       localStorage.removeItem("flights");
       localStorage.removeItem("schedules");
       localStorage.removeItem("bookings");
+
       return {
         ...state,
         userDetails: null,
