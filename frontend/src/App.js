@@ -30,4 +30,14 @@ function App() {
     </Router>
   );
 }
-export default App;
+
+// import Reviews from "./components/Reviews";
+// function App()
+// {
+//   return(
+//     <div>
+//       <Reviews/>
+//     </div>
+//   )
+// }
+ export default App;
