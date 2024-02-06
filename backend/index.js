@@ -3,13 +3,13 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const userRoute = require("./Routes/userRoute");
 const airlineRoute = require("./Routes/airlineRoute");
 const scheduleRoute = require("./Routes/scheduleRoute");
 const bookingRouter=require('./Routes/bookingRoute')
-app.use(cors());
 dotenv.config();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
