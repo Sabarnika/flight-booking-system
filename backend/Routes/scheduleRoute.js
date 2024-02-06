@@ -15,10 +15,8 @@ scheduleRouter.post("/add-schedule",expressAsyncHandler(async(req,res)=>
             seats:
             [
                 {
-              //  class:req.body.class,
                 countSeats:req.body.countSeats,
-              //  fare:fare,
-                }
+               }
             ],
             date:req.body.date
         }

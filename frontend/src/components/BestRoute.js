@@ -1,6 +1,6 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import '../styles/HomeScreen.css'
+import '../styles/HomeScreen.css';
 function BestRoute() {
   const navigate = useNavigate();
   const handleBook=()=>
@@ -39,5 +39,4 @@ function BestRoute() {
     </div>
   );
 }
-
 export default BestRoute;

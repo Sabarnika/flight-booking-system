@@ -4,13 +4,14 @@ import Axios from 'axios';
 import { getError } from "../util";
 import { toast } from "react-toastify";
 import '../styles/List.css'
+import { useNavigate } from 'react-router-dom';
 function List() {
   const { state } = useContext(Store);
   const { userDetails } = state;
+  const navigate=useNavigate()
   const userId = userDetails ? userDetails.user._id : null;
   const [bookings, setBookings] = useState([]);
   const fetchBookings = async () => {
-   // console.log(userDetails.user.name)
     const userId = userDetails ? userDetails.user._id : null;
    if(!userId) {
     console.error("User ID is not available in userDetails.");
@@ -20,13 +21,11 @@ function List() {
       if(userDetails.user.userType=="customer")
       {
       const { data } = await Axios.get(`http://localhost:5000/customer/${userId}`);
-     // console.log(data)
-      setBookings(data);
+     setBookings(data);
     } 
    else
    {
     const { data } = await Axios.get(`http://localhost:5000/customer`);
-    // console.log(data)
      setBookings(data);
    }
   }
@@ -46,9 +45,15 @@ function List() {
       toast.error(getError(err));
     }
   };  
+  const handleGoBack = () => {
+    navigate("/");
+  };
   return (
     <div className='root'>
-      <h2>User Bookings</h2>
+      <button onClick={handleGoBack} className="btn-back">
+      Back
+    </button>
+      <h2 className='user'>User Bookings</h2>
       <ul className="bookings-container">
         {bookings.map((booking) => (
           <li key={booking.date} className="booking-item">
@@ -59,7 +64,6 @@ function List() {
             <div>Number of Seats: {booking.countSeats}</div>
             <div>Date: {booking.date}</div>
             <div>Fare: {booking.fare}</div>
-            <hr />
             <button className='del' onClick={() => deleteBooking(booking.date)}>Delete</button>
            </li> 
         ))}

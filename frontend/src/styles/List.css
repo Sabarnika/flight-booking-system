@@ -1,39 +1,96 @@
 .bookings-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  list-style: none;
   padding: 0;
-  margin: 0;
 }
-.root h2
+
+.bookings-container li{
+  background: linear-gradient(to bottom,rgb(159, 232, 244),rgb(229, 255, 255),rgb(229, 255, 255));
+}
+.booking-container li 
+{
+  background: linear-gradient(to bottom,rgb(159, 232, 244),rgb(229, 255, 255),rgb(229, 255, 255));
+  background-color: rgba(4, 133, 133, 0.69);
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 10px rgb(178, 177, 177);
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+}
+.userr
+{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1%;
+  color: rgb(4, 100, 68);
+}
+.bookings-container li 
+{
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  text-align: center;
+  backdrop-filter: blur(5%);
+}
+.bookings-container li div
+{
+  margin: 5px;
+}
+
+.user
 {
   color: blue;
+  text-align: center;
+  margin-top: 3%;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .booking-item {
-  background-color: rgb(228, 240, 243);
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-left: 15%;
+  margin-right:15%;
+  margin-top: 3%;
   padding: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
-  margin: 5px;
-  border-radius: 13px;
-  width: calc(33.33% - 20px); 
+  position: relative;
+  height: 50%;
+}
+.booking-item::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0; 
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.booking-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-details > div {
+  margin-bottom: 5px;
+}
+
+.booking-details hr {
+  margin: 10px 0;
+  border: 1px solid #ddd;
 }
 
 .del {
+  background-color: #ff4444;
   color: white;
-  background-color: rgb(252, 191, 191);
-  padding: 10px;
-  border-radius: 12px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-h2 {
-  text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}

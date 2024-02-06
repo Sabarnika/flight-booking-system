@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import '../styles/List.css'
+import '../styles/List.css';
+import { useNavigate } from 'react-router-dom'
 const Schedules = () => {
+  const navigate=useNavigate()
   const [schedules, setSchedules] = useState([]);
   useEffect(() => {
     const fetchSchedules = async () => {
@@ -14,10 +16,16 @@ const Schedules = () => {
     };
     fetchSchedules();
   }, []);
+  const handleGoBack = () => {
+    navigate("/");
+  };
   return (
     <div className='root'>
-      <h2>Schedules</h2>
-      <ul className='bookings-container'>
+      <button onClick={handleGoBack} className="btn-back">
+      Back
+    </button>
+      <h2 className='userr'>Schedules</h2>
+      <ul className='booking-container'>
         {schedules.map(schedule => (
           <li key={schedule._id} className='booking-item'>
             <div>Flight ID: {schedule.flightId}</div>

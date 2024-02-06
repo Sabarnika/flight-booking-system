@@ -5,7 +5,6 @@ const Booking = require("../model/bookingModel");
 const bookingRouter = express.Router();
 bookingRouter.get(
   '/',
- // isAuth,
   expressAsyncHandler(async (req, res) => {
     const bookings = await Booking.find({});
     if (!bookings) {
@@ -18,7 +17,6 @@ bookingRouter.get(
 );
 bookingRouter.post(
   '/add/:id',
- // isAuth,
   expressAsyncHandler(async (req, res) => {
    const countSeats = req.body.countSeats;
    const seatClass=req.body.seatClass; 
@@ -46,7 +44,6 @@ bookingRouter.post(
 );
 bookingRouter.get(
   '/:id',
-//  isAuth,
   expressAsyncHandler(async (req, res) => {
     const bookings = await Booking.find({ userId: req.params.id });
     if (!bookings) {
@@ -59,7 +56,6 @@ bookingRouter.get(
 );
  bookingRouter.put(
  '/delete/:date',
-   //isAuth,
   expressAsyncHandler(async (req, res) => {
     await Booking.findOneAndDelete({ date: req.params.date });
     const bookings = await Booking.find({});

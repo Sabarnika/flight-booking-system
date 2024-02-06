@@ -2,7 +2,7 @@ import React, { useContext, useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../store";
 import { toast } from "react-toastify";
-import { getError } from "../util";
+import { getError } from "../util"
 import Axios from "axios";
 import Loading from "../components/Loading";
 import '../styles/login.css'

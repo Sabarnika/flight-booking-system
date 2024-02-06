@@ -13,11 +13,7 @@ userRoute.post(
       res.status(404).send("Email already exists");
       return;
     }
-    try {
-      // const pass = req.body.password;
-      // const saltRounds = bcrypt.genSaltSync(10);
-      // const hashedPassword = await bcrypt.hashSync(pass, saltRounds);
-      const newUser = new User({
+    try { const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 10),
@@ -43,15 +39,11 @@ userRoute.post(
     const user = await User.findOne({ email: req.body.email }).select(
       "+password"
     );
-
-  //  console.log(user);
-    if (!user) {
+  if (!user) {
       res.status(404).send({ message: "Account not found!" });
       return;
     }
-   // console.log("Provided Password:", req.body.password);
-   // console.log("Stored Password:", user.password);
-    try {
+ try {
       const validPassword = await bcrypt.compareSync(
         req.body.password,
         user.password

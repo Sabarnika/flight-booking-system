@@ -1,16 +1,15 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import BestOffer from "../components/BestOffer";
 import PopularRoute from "../components/PopularRoute";
 import BestRoute from "../components/BestRoute";
-
+import Reviews from "../components/Reviews"
 function HomeScreen() {
   return (
     <div className="homescreen">
       <Navbar />
-      <BestOffer />
-      <PopularRoute />
+     <PopularRoute />
       <BestRoute />
+      <Reviews/>
     </div>
   );
 }

@@ -2,18 +2,29 @@
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: rgb(19, 227, 250);
-    font-size: 32px;
+    font-size: 50px;
+    margin-top: 10px;
 }
-
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
+.btn-back
+{
+   margin: 10px;
+   background: white;
+   color: Blue;
+   text-decoration: underline; 
+}
 .addFlights
 {
     margin-left: 30%;
     margin-top: 3%;
+}
+.add-new
+{
+  text-align: center;
 }
 .addFlights .addFlight
 {
@@ -31,10 +42,10 @@
     margin: 10px;
 }
 .information {
-    width: calc(33.33% - 20px * 2); /* Adjust the margin as needed */
+    width: calc(33.33% - 20px * 2);
     margin: 10px;
     text-align: center;
-    box-sizing: border-box; /* Include padding and borders in the width */
+    box-sizing: border-box;
 }
 
 .information img {
@@ -72,3 +83,46 @@ label {
     margin-left: 43%;
     color: rgb(104, 180, 241);
 }
+.heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .information {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .gal-img {
+    border-radius: 8px;
+    margin-bottom: 10px;
+    height: 40%;
+  }
+  .info {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  hr {
+    border: 1px solid #ddd;
+    margin-top: 20px;
+  }
+  

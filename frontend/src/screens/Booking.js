@@ -31,7 +31,7 @@ function Booking() {
   const [seatCount, setSeatCount] = useState(0);
   const [depatureAirport, setDepatureAirport] = useState("");
   const [arrivalAirport, setArrivalAirport] = useState("");
-  const [numSeats, setNumSeats] = useState(1); 
+  const [numSeats, setNumSeats] = useState(0); 
   const [seatType, setSeatType] = useState("Economic"); 
   const [date,setDate]=useState("")
   const [schedules, setSchedules] = useState([]); 
@@ -74,15 +74,12 @@ function Booking() {
   }, []);
   const handleBook = async () => {
     try {
-     //  console.log(userDetails.user.name)
-      const userId = userDetails ? userDetails.user._id : null;
+     const userId = userDetails ? userDetails.user._id : null;
     if (!userId) {
       console.error("User ID is not available in userDetails.");
       return;
     } 
-   // console.log(userDetails.user._id)
-   // console.log(userId)
-      const {data} = await Axios.post(`http://localhost:5000/customer/add/${userId}`, {
+   const {data} = await Axios.post(`http://localhost:5000/customer/add/${userId}`, {
         flightId: selectedFlightId,  
         depAirport: depatureAirport,
         arrAirport: arrivalAirport,
@@ -90,15 +87,20 @@ function Booking() {
         countSeats:numSeats,
         date: date,
       });
-   //   console.log(data)
       localStorage.setItem("bookings", JSON.stringify(data));
       toast.success("Flight booked successfully!");
     } catch (err) {
       toast.error(getError(err));
     }
   }; 
+  const handleGoBack = () => {
+    navigate("/");
+  };
   return (
     <div>
+      <button onClick={handleGoBack} className="btn-back">
+      Back
+    </button>
       {
         userDetails.user.userType!="customer" &&
         (

@@ -19,9 +19,10 @@ function App() {
         <Route path="/" element={<HomeScreen />} />
         {!userDetails && <Route path="/user/sign-up" element={<Signup />} />}
         {!userDetails && <Route path="/user/sign-in" element={<Signin />} />}
-       <Route path="/flights" element={<Flight />} />
         {userDetails && <Route path="/bookings" element={<Booking />} />}
         {!userDetails && <Route path="/bookings" element={<Signin />} />}
+        {!userDetails && <Route path="/flights" element={<Signin />} />}
+        {userDetails && <Route path="/flights" element={<Flight />} />}
         {userDetails && <Route path="/activity" element={<List/>}/>}
         {userDetails && userDetails.user.userType=="customer" && <Route path="/check" element={<Schedules/>}/>}
         {!userDetails && <Route path="/activity" element={<Signin/>}/>}
@@ -30,14 +31,4 @@ function App() {
     </Router>
   );
 }
-
-// import Reviews from "./components/Reviews";
-// function App()
-// {
-//   return(
-//     <div>
-//       <Reviews/>
-//     </div>
-//   )
-// }
  export default App;

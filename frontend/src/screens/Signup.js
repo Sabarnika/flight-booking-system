@@ -66,7 +66,7 @@ function Signup() {
         );
       }
     } else {
-      toast.error("Password Mismatch");
+      toast.error("Password Mismatch")
     }
   };
   return (

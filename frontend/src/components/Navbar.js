@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../store";
-import { toast } from "react-toastify";
-
+import { toast } from "react-toastify"
 function Navbar() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -63,6 +62,16 @@ function Navbar() {
                 </Link>
               </li>
             )}
+              {userDetails?.user?.userType === "customer" && (
+              <li className="nav-item">
+                <Link
+                  to={userDetails ? "/flights" : "/user/sign-in"}
+                  className="nav-link"
+                >
+                  Flights
+                </Link>
+              </li>
+            )}
              {userDetails?.user?.userType === "customer" && (
               <li className="nav-item">
                 <Link
@@ -70,16 +79,6 @@ function Navbar() {
                   className="nav-link"
                 >
                   Available Schedules
-                </Link>
-              </li>
-            )}
-            {userDetails?.user?.userType === "customer" && (
-              <li className="nav-item">
-                <Link
-                  to={userDetails ? "/flights" : "/user/sign-in"}
-                  className="nav-link"
-                >
-                  Flights
                 </Link>
               </li>
             )}
@@ -117,5 +116,4 @@ function Navbar() {
     </div>
   );
 }
-
 export default Navbar;

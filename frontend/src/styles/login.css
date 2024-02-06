@@ -15,11 +15,7 @@
 {
     padding: 6px;
 }
-.signup-container h4
-{
-    margin-top: 10px;
-    margin-left: 30%;
-}
+.signup-container h4,
 .login-container h4
 {
     margin-top: 10px;

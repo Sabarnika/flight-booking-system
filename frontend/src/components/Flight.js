@@ -26,7 +26,6 @@ function Flight() {
   const [loc, setLoc] = useState("");
   const [locCode, setLocCode] = useState("");
   const [time, setTime] = useState("");
- // const [flights, setFlights] = useState([]);
   const [source,setSource]=useState('')
   const [dest,setDes]=useState('')
   const [{ loading }, dispatch] = useReducer(reducer, { loading: false });
@@ -73,12 +72,18 @@ function Flight() {
       toast.error(getError(err));
     }
   };
+const handleGoBack = () => {
+  navigate("/");
+};
   return (
     <div>
+    <button onClick={handleGoBack} className="btn-back">
+      Back
+    </button>
       {
         userDetails.user.userType!="customer" && (
           <div className="flights">
-            <h2>Add new Flight</h2>
+            <h2 className="add-new">Add new Flight</h2>
           <div className="addFlights">
           <form>
           <div className="form-group col-sm-6">
