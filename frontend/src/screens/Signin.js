@@ -29,7 +29,7 @@ function Signin() {
     e.preventDefault();
     try {
       dispatch({ type: "FETCH_REQUEST" });
-      const { data } = await Axios.post("http://localhost:5000/user/sign-in", {
+      const { data } = await Axios.post("https://flight-booking-system-tau.vercel.app/user/sign-in", {
         email,
         password: pass,
       });

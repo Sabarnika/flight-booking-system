@@ -39,7 +39,7 @@ function Booking() {
   const [selectedFlightId, setSelectedFlightId] = useState("");
  const handleAddSchedule = async () => {
     try {
-      const { data } = await Axios.post("http://localhost:5000/admin/add-schedule", {
+      const { data } = await Axios.post("https://flight-booking-system-tau.vercel.app/admin/add-schedule", {
         flightId,
         departureAirport: depPort,
         arrivalAirport: arrPort,
@@ -63,7 +63,7 @@ function Booking() {
   };
   const fetchSchedules = async () => {
     try {
-      const { data } = await Axios.get("http://localhost:5000/admin");
+      const { data } = await Axios.get("https://flight-booking-system-tau.vercel.app/admin");
       setSchedules(data);
     } catch (err) {
       toast.error(getError(err));
@@ -79,7 +79,7 @@ function Booking() {
       console.error("User ID is not available in userDetails.");
       return;
     } 
-   const {data} = await Axios.post(`http://localhost:5000/customer/add/${userId}`, {
+   const {data} = await Axios.post(`https://flight-booking-system-tau.vercel.app/customer/add/${userId}`, {
         flightId: selectedFlightId,  
         depAirport: depatureAirport,
         arrAirport: arrivalAirport,

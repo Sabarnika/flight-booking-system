@@ -20,12 +20,12 @@ function List() {
     try {
       if(userDetails.user.userType=="customer")
       {
-      const { data } = await Axios.get(`http://localhost:5000/customer/${userId}`);
+      const { data } = await Axios.get(`https://flight-booking-system-tau.vercel.app/customer/${userId}`);
      setBookings(data);
     } 
    else
    {
-    const { data } = await Axios.get(`http://localhost:5000/customer`);
+    const { data } = await Axios.get(`https://flight-booking-system-tau.vercel.app/customer`);
      setBookings(data);
    }
   }
@@ -38,7 +38,7 @@ function List() {
   }, []);
   const deleteBooking = async (date) => {
     try {
-      await Axios.put(`http://localhost:5000/customer/delete/${date}`);
+      await Axios.put(`https://flight-booking-system-tau.vercel.app/customer/delete/${date}`);
        setBookings((prevBookings) => prevBookings.filter((booking) => booking.date !== date));
     } 
     catch (err) {

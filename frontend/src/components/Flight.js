@@ -32,7 +32,7 @@ function Flight() {
   const fetchFlights = async () => {
     try {
       dispatch({ type: "FETCH_REQUEST" });
-      const { data } = await Axios.get("http://localhost:5000/airline/fetch");
+      const { data } = await Axios.get("https://flight-booking-system-tau.vercel.app/airline/fetch");
       localStorage.setItem("flights", JSON.stringify(data));
       ctxDispatch({ type: "ADD_FLIGHTS", payload: data });
       dispatch({ type: "FETCH_SUCCESS" });
@@ -53,7 +53,7 @@ function Flight() {
         toast.error("Please fill in all required fields.");
         return;
       }
-    const { data } = await Axios.put("http://localhost:5000/airline/add", {
+    const { data } = await Axios.put("https://flight-booking-system-tau.vercel.app/airline/add", {
         flightId: id,
         name,
         location: loc,

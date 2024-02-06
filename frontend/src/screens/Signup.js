@@ -41,7 +41,7 @@ function Signup() {
         try {
           dispatch({ type: "FETCH_REQUEST" });
           const { data } = await Axios.post(
-            "http://localhost:5000/user/sign-up",
+            "https://flight-booking-system-tau.vercel.app/user/sign-up",
             {
               name,
               email,
