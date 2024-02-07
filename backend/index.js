@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
-const allowedOrigins = ['http://localhost:3000',"https://expense-tracker-bice-six.vercel.app"];
+const allowedOrigins = ['http://localhost:3000',"https://flight-booking-system-hd9i.vercel.app/flights"];
 
 const corsOptions = {
   origin: function(origin, callback) {
