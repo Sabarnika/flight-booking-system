@@ -3,7 +3,22 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
-app.use(cors());
+const allowedOrigins = ['http://localhost:3000',"https://expense-tracker-bice-six.vercel.app"];
+
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const userRoute = require("./Routes/userRoute");
@@ -12,7 +27,6 @@ const scheduleRoute = require("./Routes/scheduleRoute");
 const bookingRouter=require('./Routes/bookingRoute')
 dotenv.config();
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -21,6 +35,12 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+app.get("/",(req,res)=>{
+    res.send("This is the a backend server");
+  })
+  app.get("/users",(req,res)=>{
+    res.send("This is the for server");
+  })
 app.use("/user", userRoute);
 app.use("/airline", airlineRoute);
 app.use("/admin",scheduleRoute);
