@@ -43,7 +43,7 @@ app.get("/",(req,res)=>{
 app.get("/users",(req,res)=>{
     res.send("This is the for server");
 })
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server listening at PORT ${PORT}`);
 });
