@@ -32,7 +32,7 @@ function Signin() {
       const { data } = await Axios.post("https://flight-booking-system-tau.vercel.app/user/sign-in", {
         email,
         password: pass,
-      });
+      },{ withCredentials: true }); 
       localStorage.setItem("userDetails", JSON.stringify(data));
       ctxDispatch({ type: "SIGN_IN", payload: data });
       toast.success(data.user.name + " signed up successfully");
