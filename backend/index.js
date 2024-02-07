@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
-const allowedOrigins = ['http://localhost:3000',"https://flight-booking-system-hd9i.vercel.app/flights"];
+const allowedOrigins = ['http://localhost:3000',"https://flight-booking-system-hd9i.vercel.app"];
 
 const corsOptions = {
   origin: function(origin, callback) {
@@ -35,16 +35,16 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-app.get("/",(req,res)=>{
-    res.send("This is the a backend server");
-  })
-  app.get("/users",(req,res)=>{
-    res.send("This is the for server");
-  })
 app.use("/user", userRoute);
 app.use("/airline", airlineRoute);
 app.use("/admin",scheduleRoute);
 app.use("/customer",bookingRouter)
+app.get("/",(req,res)=>{
+    res.send("This is the a backend server");
+})
+app.get("/users",(req,res)=>{
+    res.send("This is the for server");
+})
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server listening at PORT ${PORT}`);
