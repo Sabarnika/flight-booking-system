@@ -2,7 +2,8 @@ import React, { useContext, useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Store } from "../store";
 import { toast } from "react-toastify";
-import { getError } from "../util"
+import { getError } from "../util";
+import Loading from "../components/Loading";
 import Axios from "axios";
 import '../styles/login.css'
 const reducer = (state, action) => {
@@ -44,6 +45,7 @@ function Signin() {
   };
   return (
     <div>
+    {loading && <Loading />}
       <div className="login-container">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
