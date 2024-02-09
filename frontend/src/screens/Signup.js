@@ -4,7 +4,6 @@ import { Store } from "../store";
 import { toast } from "react-toastify";
 import { getError } from "../util";
 import Axios from "axios";
-import Loading from "../components/Loading";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -41,7 +40,7 @@ function Signup() {
         try {
           dispatch({ type: "FETCH_REQUEST" });
           const { data } = await Axios.post(
-            "https://flight-booking-system-tau.vercel.app/user/sign-up",
+            "https://wild-cyan-wildebeest-boot.cyclic.app/user/sign-up",
             {
               name,
               email,
@@ -71,7 +70,6 @@ function Signup() {
   };
   return (
     <div>
-      {loading && <Loading />}
       <div className="signup-container">
         <h1>Sign up</h1>
       <form onSubmit={handleSignup}>
