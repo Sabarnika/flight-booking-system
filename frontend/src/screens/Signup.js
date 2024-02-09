@@ -4,6 +4,7 @@ import { Store } from "../store";
 import { toast } from "react-toastify";
 import { getError } from "../util";
 import Axios from "axios";
+import Loading from "../components/Loading";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
