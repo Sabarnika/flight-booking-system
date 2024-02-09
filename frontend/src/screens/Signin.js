@@ -4,7 +4,6 @@ import { Store } from "../store";
 import { toast } from "react-toastify";
 import { getError } from "../util"
 import Axios from "axios";
-import Loading from "../components/Loading";
 import '../styles/login.css'
 const reducer = (state, action) => {
   switch (action.type) {
@@ -29,7 +28,7 @@ function Signin() {
     e.preventDefault();
     try {
       dispatch({ type: "FETCH_REQUEST" });
-      const { data } = await Axios.post("https://flight-booking-system-tau.vercel.app/user/sign-in", {
+      const { data } = await Axios.post("https://wild-cyan-wildebeest-boot.cyclic.app/user/sign-in", {
         email,
         password: pass,
       },{ withCredentials: true }); 
@@ -45,7 +44,6 @@ function Signin() {
   };
   return (
     <div>
-      {loading && <Loading />}
       <div className="login-container">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
