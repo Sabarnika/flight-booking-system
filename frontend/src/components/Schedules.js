@@ -8,7 +8,7 @@ const Schedules = () => {
   useEffect(() => {
     const fetchSchedules = async () => {
       try {
-        const { data } = await Axios.get('https://flight-booking-system-tau.vercel.app/admin/');
+        const { data } = await Axios.get('https://wild-cyan-wildebeest-boot.cyclic.app/admin/');
         setSchedules(data);
       } catch (error) {
         console.error('Error fetching schedules:', error);
