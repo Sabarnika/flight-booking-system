@@ -18,7 +18,7 @@ Booking Process: The system facilitates a smooth booking process, allowing users
 
 Flight Management: Administrators have the ability to manage flight schedules, including adding new flights, updating existing ones, and canceling or rescheduling flights when necessary.
 
-User Management: Administrators can oversee user accounts, handle bookings, and address any inquiries or issues raised by users.
+User Management: Administrators can oversee user accounts, handle bookings made by users.
 
 ## Tech Stacks Used
 
